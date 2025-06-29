@@ -2,15 +2,12 @@ pipeline {
     agent any
     
     stages {
-        stage('Check Branch') {
-            when {
-                branch 'main'
-            }
+        stage('Checkout') {
             steps {
-                echo "Running pipeline on branch: ${env.BRANCH_NAME}"
+                checkout scm
             }
         }
-        stage('Restore the project') {
+         stage('Restore the project') {
             steps {
                 bat 'dotnet restore'
             }
